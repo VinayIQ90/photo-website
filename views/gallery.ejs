@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My photo Diary</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="gallery-container">
+    <h1>Your photo Diary</h1>
+    <p class="subtitle">Explore your memories</p>
+
+    <div class="gallery-carousel">
+      <% files.forEach(file => { %>
+        <div class="gallery-card">
+          <img src="/uploads/<%= userid %>/<%= file %>" alt="Photo" onclick="viewFull(this.src)">
+          <a href="/uploads/<%= userid %>/<%= file %>" class="download-btn" download>Download</a>
+        </div>
+      <% }); %>
+    </div>
+
+    <a class="upload-btn" href="/upload">Upload Your Photo</a>
+  </div>
+
+  <!-- Fullscreen View -->
+  <div id="fullScreenView" class="fullscreen-img" style="display:none">
+    <button class="close-btn" onclick="document.getElementById('fullScreenView').style.display='none'">✖</button>
+    <img id="fullImg" src="">
+  </div>
+
+  <script>
+    function viewFull(src) {
+      document.getElementById('fullScreenView').style.display = 'flex';
+      document.getElementById('fullImg').src = src;
+    }
+  </script>
+</body>
+</html>
